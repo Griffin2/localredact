@@ -164,7 +164,7 @@
 
 <svelte:window on:paste={handlePaste} />
 
-<TrustBar sourceUrl="https://github.com/user/localredact" />
+<TrustBar sourceUrl="https://github.com/Griffin2/localredact" />
 
 <div class="page-shell">
   <ToolHeader
@@ -176,7 +176,10 @@
     <div
       class="drop-zone"
       class:drag-over={dragOver}
-      ondragover={(e) => { e.preventDefault(); dragOver = true; }}
+      ondragover={(e) => {
+        e.preventDefault();
+        dragOver = true;
+      }}
       ondragleave={() => (dragOver = false)}
       ondrop={handleDrop}
       role="button"
@@ -184,8 +187,12 @@
     >
       <div class="drop-content">
         <span class="drop-icon">🖼️</span>
-        <p class="drop-text">Drop a screenshot, click to select, or paste from clipboard</p>
-        <p class="drop-hint">Ctrl+V / Cmd+V works too — draw rectangles to redact</p>
+        <p class="drop-text">
+          Drop a screenshot, click to select, or paste from clipboard
+        </p>
+        <p class="drop-hint">
+          Ctrl+V / Cmd+V works too — draw rectangles to redact
+        </p>
         <label class="btn btn-primary drop-btn">
           Select Image
           <input type="file" accept="image/*" onchange={handleSelect} hidden />
@@ -198,23 +205,37 @@
         <button
           class="btn"
           class:btn-active={mode === "black"}
-          onclick={() => { mode = "black"; }}
-        >■ Black</button>
+          onclick={() => {
+            mode = "black";
+          }}>■ Black</button
+        >
         <button
           class="btn"
           class:btn-active={mode === "blur"}
-          onclick={() => { mode = "blur"; }}
-        >◌ Blur</button>
+          onclick={() => {
+            mode = "blur";
+          }}>◌ Blur</button
+        >
       </div>
       {#if mode === "blur"}
         <label class="blur-control">
           <span class="blur-label">Radius</span>
-          <input type="range" min="5" max="50" bind:value={blurRadius} class="range-input" />
+          <input
+            type="range"
+            min="5"
+            max="50"
+            bind:value={blurRadius}
+            class="range-input"
+          />
           <span class="blur-value">{blurRadius}</span>
         </label>
       {/if}
-      <button class="btn" onclick={undo} disabled={regions.length === 0}>Undo</button>
-      <button class="btn" onclick={clearAll} disabled={regions.length === 0}>Clear</button>
+      <button class="btn" onclick={undo} disabled={regions.length === 0}
+        >Undo</button
+      >
+      <button class="btn" onclick={clearAll} disabled={regions.length === 0}
+        >Clear</button
+      >
       <button class="btn btn-primary" onclick={download}>Download</button>
       <button class="btn btn-reset" onclick={reset}>New Image</button>
       <div class="spacer"></div>
@@ -250,7 +271,9 @@
     padding: 48px 24px;
     text-align: center;
     cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
+    transition:
+      border-color 0.15s,
+      background 0.15s;
     background: var(--bg-surface);
   }
 
